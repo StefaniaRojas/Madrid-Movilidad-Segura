@@ -1,5 +1,6 @@
 from pathlib import Path
 import base64
+import time
 
 import pandas as pd
 import plotly.express as px
@@ -888,7 +889,7 @@ def render_footer():
     st.markdown(
         """
         <div class="footer-note">
-            Fuente principal: Portal de Datos Abiertos del Ayuntamiento de Madrid. Elaboración propia a partir de registros de accidentes de tráfico y aforos permanentes.
+            Fuente principal: Portal de Datos Abiertos del Ayuntamiento de Madrid.
         </div>
         """,
         unsafe_allow_html=True,
@@ -2355,7 +2356,7 @@ with tab_exposicion:
     st.markdown(
         """
         <p class="context-note">
-            Esta sección usa los aforos permanentes como aproximación descriptiva a la exposición vial. El objetivo es comparar patrones de circulación con accidentes y lesividad, no establecer una relación causal directa.
+            Esta sección usa los aforos permanentes como aproximación descriptiva a la exposición vial. El objetivo es comparar patrones de circulación con accidentes y lesividad.
         </p>
         """,
         unsafe_allow_html=True,
