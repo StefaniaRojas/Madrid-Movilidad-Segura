@@ -1,6 +1,6 @@
-# Madrid Segura
+# Madrid Movilidad Segura
 
-Madrid Segura es un tablero interactivo desarrollado en Streamlit para analizar la lesividad en accidentes de tráfico en Madrid.
+Madrid Movilidad Segura es un tablero interactivo desarrollado en Streamlit para analizar la lesividad en accidentes de tráfico en Madrid.
 
 La aplicación permite explorar la distribución de personas implicadas en accidentes según nivel de lesividad, tipo de accidente, tipo de vehículo, perfil de las personas implicadas, patrones temporales, distribución espacial y exposición vial a partir de datos de aforos permanentes.
 
