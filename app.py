@@ -39,7 +39,7 @@ else:
     page_icon = "🚗"
 
 st.set_page_config(
-    page_title="Madrid Segura",
+    page_title="Madrid Movilidad Segura",
     page_icon=page_icon,
     layout="wide",
     initial_sidebar_state="expanded",
@@ -131,7 +131,7 @@ st.markdown(
     """
     <style>
     .block-container {
-        padding-top: 8.2rem;
+        padding-top: 1.2rem;
         padding-bottom: 2rem;
         max-width: 1500px;
     }
@@ -141,25 +141,40 @@ st.markdown(
         font-weight: 700;
     }
 
+    div[data-testid="stElementContainer"]:has(.fixed-header),
+    div.element-container:has(.fixed-header) {
+        position: sticky;
+        top: 3.4rem;
+        z-index: 99999;
+        overflow: visible !important;
+    }
+
+    div[data-testid="stElementContainer"]:has(.fixed-header) > div,
+    div.element-container:has(.fixed-header) > div {
+        overflow: visible !important;
+    }
+
     .fixed-header {
-        position: fixed;
-        top: 2.75rem;
-        left: 0;
-        right: 0;
-        z-index: 9999;
+        position: relative;
+        width: 100%;
         display: flex;
         align-items: center;
         gap: 1.4rem;
         background: rgba(248, 250, 252, 0.98);
         backdrop-filter: blur(8px);
-        border-bottom: 1px solid #D9E2EC;
-        padding: 0.55rem 2.1rem 0.55rem 5.4rem;
-        box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
-        min-height: 92px;
+        border: 1px solid #D9E2EC;
+        border-radius: 18px;
+        padding: 1.05rem 1.4rem;
+        min-height: 118px;
+        overflow: visible;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+        margin-bottom: 1.4rem;
+        box-sizing: border-box;
     }
 
     .header-logo-box {
-        width: 115px;
+        width: 105px;
+        min-width: 72px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -167,21 +182,24 @@ st.markdown(
     }
 
     .header-logo {
-        max-height: 82px;
-        max-width: 105px;
+        max-height: 78px;
+        max-width: 95px;
         object-fit: contain;
     }
 
     .header-title-box {
         flex: 1;
         min-width: 0;
+        overflow: visible;
     }
 
     .header-title {
         font-size: 2.15rem;
         font-weight: 800;
         color: #1E293B;
-        line-height: 1.05;
+        line-height: 1.28;
+        white-space: normal;
+        overflow: visible;
     }
 
     .metric-box {
@@ -191,6 +209,7 @@ st.markdown(
         padding: 0.95rem 1rem;
         box-shadow: 0px 4px 14px rgba(15, 23, 42, 0.04);
         min-height: 108px;
+        box-sizing: border-box;
     }
 
     .metric-label {
@@ -223,6 +242,7 @@ st.markdown(
         padding: 1rem 1.2rem;
         box-shadow: 0px 4px 14px rgba(15, 23, 42, 0.04);
         margin-bottom: 1rem;
+        box-sizing: border-box;
     }
 
     .intro-title {
@@ -287,14 +307,6 @@ st.markdown(
     }
 
     .loading-question {
-        color: #16324F;
-        font-size: 1rem;
-        line-height: 1.55;
-        font-weight: 650;
-        margin-bottom: 0.35rem;
-    }
-
-    .loading-subquestion {
         color: #16324F;
         font-size: 1rem;
         line-height: 1.55;
@@ -410,29 +422,128 @@ st.markdown(
         100% { transform: translateX(255%); }
     }
 
-    @media (max-width: 900px) {
-        .fixed-header {
-            top: 2.75rem;
-            padding-left: 1.2rem;
-            gap: 0.9rem;
-            min-height: 82px;
-        }
+    div[data-baseweb="tab-list"] {
+        gap: 0.4rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        scrollbar-width: thin;
+    }
 
-        .header-logo-box {
-            width: 80px;
-        }
+    button[data-baseweb="tab"] {
+        flex: 0 0 auto;
+    }
 
-        .header-logo {
-            max-height: 68px;
-            max-width: 80px;
-        }
-
-        .header-title {
-            font-size: 1.65rem;
+    @media (max-width: 1100px) {
+        div[data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
         }
 
         .block-container {
-            padding-top: 7.4rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .block-container {
+            padding-top: 0.9rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        div[data-testid="stElementContainer"]:has(.fixed-header),
+        div.element-container:has(.fixed-header) {
+            top: 3.2rem;
+        }
+
+        .fixed-header {
+            padding: 0.85rem 0.9rem;
+            min-height: 88px;
+            gap: 0.8rem;
+            border-radius: 14px;
+            margin-bottom: 1rem;
+}
+
+        .header-logo-box {
+            width: 62px;
+            min-width: 62px;
+        }
+
+        .header-logo {
+            max-height: 56px;
+            max-width: 62px;
+        }
+
+        .header-title {
+            font-size: 1.45rem;
+            line-height: 1.2;
+        }
+
+        .metric-box {
+            min-height: auto;
+            padding: 0.85rem 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .metric-value {
+            font-size: 1.6rem;
+        }
+
+        .metric-value-small {
+            font-size: 1.15rem;
+        }
+
+        .section-card {
+            padding: 0.9rem 1rem;
+        }
+
+        .intro-text,
+        .context-note {
+            font-size: 0.93rem;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .block-container {
+            padding-top: 0.8rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        .fixed-header {
+            top: 0.35rem;
+            padding: 0.65rem 0.75rem;
+            gap: 0.65rem;
+        }
+
+        .header-logo-box {
+            width: 52px;
+            min-width: 52px;
+        }
+
+        .header-logo {
+            max-height: 48px;
+            max-width: 52px;
+        }
+
+        .header-title {
+            font-size: 1.3rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+        }
+
+        h3 {
+            font-size: 1.15rem;
         }
     }
     </style>
@@ -475,7 +586,6 @@ def imagen_base64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-
 def render_loading_screen():
     loader_html = """
     <!DOCTYPE html>
@@ -517,46 +627,235 @@ def render_loading_screen():
                 position: relative;
                 overflow: hidden;
                 border-radius: 20px;
-                background: linear-gradient(
-                    180deg,
-                    #E0F2FE 0%,
-                    #F8FAFC 62%,
-                    #374151 62%,
-                    #374151 100%
-                );
                 border: 1px solid #E2E8F0;
                 box-sizing: border-box;
+                background: linear-gradient(
+                    180deg,
+                    #dff3ff 0%,
+                    #eef8ff 58%,
+                    #4b5563 58%,
+                    #374151 100%
+                );
             }
 
-            .scene-sun {
+            /* CAPAS DEL CIELO */
+            .scene-sky {
                 position: absolute;
-                top: 25px;
-                right: -42px;
-                width: 32px;
-                height: 32px;
-                background: #FACC15;
-                border-radius: 50%;
-                box-shadow: 0 0 22px rgba(250, 204, 21, 0.85);
-                animation: sunMoveRightToLeft 5.5s linear infinite;
+                inset: 0 0 78px 0;
+                overflow: hidden;
                 z-index: 1;
             }
 
+            .scene-dusk-overlay,
+            .scene-night-overlay,
+            .scene-dawn-overlay {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+            }
+
+            .scene-dusk-overlay {
+                background: linear-gradient(
+                    180deg,
+                    rgba(251, 191, 36, 0.24) 0%,
+                    rgba(249, 115, 22, 0.15) 55%,
+                    rgba(249, 115, 22, 0.00) 100%
+                );
+                animation: duskLoop 4s linear infinite;
+            }
+
+            .scene-night-overlay {
+                background: linear-gradient(
+                    180deg,
+                    rgba(15, 23, 42, 0.96) 0%,
+                    rgba(30, 41, 59, 0.90) 58%,
+                    rgba(15, 23, 42, 0.20) 100%
+                );
+                animation: nightLoop 4s linear infinite;
+            }
+
+            .scene-dawn-overlay {
+                background: linear-gradient(
+                    180deg,
+                    rgba(191, 219, 254, 0.34) 0%,
+                    rgba(219, 234, 254, 0.22) 55%,
+                    rgba(255, 255, 255, 0.00) 100%
+                );
+                animation: dawnLoop 4s linear infinite;
+            }
+
+            /* ASTROS */
+            .scene-sun,
+            .scene-moon {
+                position: absolute;
+                top: 24px;
+                right: -44px;
+                border-radius: 50%;
+                z-index: 3;
+            }
+
+            .scene-sun {
+                width: 34px;
+                height: 34px;
+                background: #FACC15;
+                box-shadow: 0 0 24px rgba(250, 204, 21, 0.80);
+                animation: sunLoop 4s linear infinite;
+            }
+
+            .scene-moon {
+                width: 34px;
+                height: 34px;
+                background: radial-gradient(
+                    circle at 68% 42%,
+                    transparent 0%,
+                    transparent 39%,
+                    #F8FAFC 41%,
+                    #F8FAFC 100%
+                );
+                filter: drop-shadow(0 0 12px rgba(248, 250, 252, 0.75));
+                animation: moonLoop 4s linear infinite;
+            }
+
+            /* ESTRELLAS */
             .scene-star {
                 position: absolute;
                 width: 5px;
                 height: 5px;
                 background: #FFFFFF;
                 border-radius: 50%;
-                opacity: 0.9;
-                animation: starBlink 1.8s ease-in-out infinite;
-                z-index: 1;
+                opacity: 0;
+                z-index: 2;
+                animation: starLoop 4s ease-in-out infinite;
             }
 
-            .star-1 { top: 22px; left: 62px; animation-delay: 0s; }
-            .star-2 { top: 46px; left: 126px; animation-delay: 0.4s; }
-            .star-3 { top: 28px; right: 92px; animation-delay: 0.8s; }
-            .star-4 { top: 60px; right: 42px; animation-delay: 1.2s; }
+            .star-1 { top: 26px; left: 52px; animation-delay: 0.0s; }
+            .star-2 { top: 58px; left: 120px; animation-delay: 0.2s; }
+            .star-3 { top: 34px; right: 88px; animation-delay: 0.4s; }
+            .star-4 { top: 78px; right: 42px; animation-delay: 0.6s; }
 
+            @keyframes sunLoop {
+                0% {
+                    transform: translateX(0) translateY(8px);
+                    opacity: 0;
+                }
+                6% {
+                    opacity: 1;
+                }
+                23% {
+                    transform: translateX(-180px) translateY(-12px);
+                    opacity: 1;
+                }
+                39% {
+                    transform: translateX(-400px) translateY(8px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateX(-400px) translateY(8px);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes moonLoop {
+                0% {
+                    transform: translateX(0) translateY(8px);
+                    opacity: 0;
+                }
+                42% {
+                    transform: translateX(0) translateY(8px);
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                68% {
+                    transform: translateX(-180px) translateY(-12px);
+                    opacity: 1;
+                }
+                88% {
+                    transform: translateX(-400px) translateY(8px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateX(-400px) translateY(8px);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes nightLoop {
+                0% {
+                    opacity: 0.00;
+                }
+                24% {
+                    opacity: 0.00;
+                }
+                42% {
+                    opacity: 0.45;
+                }
+                58% {
+                    opacity: 0.88;
+                }
+                76% {
+                    opacity: 0.72;
+                }
+                92% {
+                    opacity: 0.12;
+                }
+                100% {
+                    opacity: 0.00;
+                }
+            }
+
+            @keyframes duskLoop {
+                0% {
+                    opacity: 0.00;
+                }
+                14% {
+                    opacity: 0.16;
+                }
+                30% {
+                    opacity: 0.42;
+                }
+                44% {
+                    opacity: 0.10;
+                }
+                72% {
+                    opacity: 0.00;
+                }
+                88% {
+                    opacity: 0.20;
+                }
+                100% {
+                    opacity: 0.00;
+                }
+            }
+
+            @keyframes dawnLoop {
+                0% {
+                    opacity: 0.00;
+                }
+                68% {
+                    opacity: 0.00;
+                }
+                84% {
+                    opacity: 0.24;
+                }
+                100% {
+                    opacity: 0.08;
+                }
+            }
+
+            @keyframes starLoop {
+                0%, 36%, 90%, 100% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                52%, 74% {
+                    opacity: 0.95;
+                    transform: scale(1.1);
+                }
+            }
+
+            /* CARRO */
             .scene-car {
                 position: absolute;
                 width: 270px;
@@ -564,7 +863,7 @@ def render_loading_screen():
                 left: 45px;
                 top: 54px;
                 animation: carBounceScene 1.05s ease-in-out infinite;
-                z-index: 4;
+                z-index: 5;
             }
 
             .scene-car-body {
@@ -587,7 +886,7 @@ def render_loading_screen():
                 background: #1E293B;
                 clip-path: polygon(13% 100%, 25% 17%, 66% 17%, 100% 100%);
                 border-top: 6px solid #CBD5E1;
-                z-index: 5;
+                z-index: 6;
             }
 
             .scene-window {
@@ -640,7 +939,7 @@ def render_loading_screen():
                 background: #2F3333;
                 border-radius: 50%;
                 border: 8px solid #2F3333;
-                z-index: 6;
+                z-index: 7;
                 animation: wheelSpinScene 0.85s linear infinite;
                 box-sizing: border-box;
             }
@@ -679,6 +978,7 @@ def render_loading_screen():
                 left: 17px;
             }
 
+            /* CARRETERA */
             .scene-road {
                 position: absolute;
                 bottom: 0;
@@ -687,7 +987,7 @@ def render_loading_screen():
                 height: 78px;
                 background: #374151;
                 overflow: hidden;
-                z-index: 2;
+                z-index: 4;
             }
 
             .scene-road::before {
@@ -765,17 +1065,70 @@ def render_loading_screen():
                 animation: progressMove 1.15s ease-in-out infinite;
             }
 
-            @keyframes sunMoveRightToLeft {
-                0% { transform: translateX(0) translateY(6px); opacity: 0; }
-                10% { opacity: 1; }
-                50% { transform: translateX(-190px) translateY(-12px); opacity: 1; }
-                90% { opacity: 1; }
-                100% { transform: translateX(-420px) translateY(6px); opacity: 0; }
+            /* ANIMACIONES */
+            @keyframes nightFade {
+                0%   { opacity: 0.00; }
+                18%  { opacity: 0.00; }
+                34%  { opacity: 0.38; }
+                50%  { opacity: 0.82; }
+                64%  { opacity: 0.82; }
+                80%  { opacity: 0.20; }
+                100% { opacity: 0.00; }
             }
 
-            @keyframes starBlink {
-                0%, 100% { opacity: 0.35; transform: scale(0.8); }
-                50% { opacity: 1; transform: scale(1.15); }
+            @keyframes duskGlow {
+                0%   { opacity: 0.00; }
+                10%  { opacity: 0.10; }
+                22%  { opacity: 0.40; }
+                34%  { opacity: 0.10; }
+                60%  { opacity: 0.00; }
+                76%  { opacity: 0.12; }
+                88%  { opacity: 0.36; }
+                100% { opacity: 0.08; }
+            }
+
+            @keyframes dawnGlow {
+                0%   { opacity: 0.00; }
+                64%  { opacity: 0.00; }
+                78%  { opacity: 0.18; }
+                90%  { opacity: 0.32; }
+                100% { opacity: 0.10; }
+            }
+
+            @keyframes sunFirstMove {
+                0%   { transform: translateX(0) translateY(8px); opacity: 0; }
+                5%   { opacity: 1; }
+                18%  { transform: translateX(-155px) translateY(-10px); opacity: 1; }
+                30%  { transform: translateX(-330px) translateY(8px); opacity: 0; }
+                100% { transform: translateX(-330px) translateY(8px); opacity: 0; }
+            }
+
+            @keyframes moonMove {
+                0%   { transform: translateX(0) translateY(8px); opacity: 0; }
+                32%  { transform: translateX(0) translateY(8px); opacity: 0; }
+                38%  { opacity: 1; }
+                50%  { transform: translateX(-155px) translateY(-12px); opacity: 1; }
+                64%  { transform: translateX(-330px) translateY(8px); opacity: 0; }
+                100% { transform: translateX(-330px) translateY(8px); opacity: 0; }
+            }
+
+            @keyframes sunSecondMove {
+                0%   { transform: translateX(0) translateY(8px); opacity: 0; }
+                66%  { transform: translateX(0) translateY(8px); opacity: 0; }
+                72%  { opacity: 1; }
+                84%  { transform: translateX(-155px) translateY(-10px); opacity: 1; }
+                100% { transform: translateX(-330px) translateY(8px); opacity: 0; }
+            }
+
+            @keyframes starNight {
+                0%, 30%, 72%, 100% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                45%, 60% {
+                    opacity: 0.95;
+                    transform: scale(1.1);
+                }
             }
 
             @keyframes carBounceScene {
@@ -785,16 +1138,16 @@ def render_loading_screen():
 
             @keyframes wheelSpinScene {
                 from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
+                to   { transform: rotate(360deg); }
             }
 
             @keyframes roadMoveScene {
                 from { transform: translateX(0); }
-                to { transform: translateX(-76px); }
+                to   { transform: translateX(-76px); }
             }
 
             @keyframes progressMove {
-                0% { transform: translateX(-115%); }
+                0%   { transform: translateX(-115%); }
                 100% { transform: translateX(255%); }
             }
         </style>
@@ -804,12 +1157,19 @@ def render_loading_screen():
         <div class="loading-wrapper">
             <div class="loading-card">
                 <div class="loading-scene">
-                    <div class="scene-sun"></div>
+                    <div class="scene-sky">
+                        <div class="scene-dusk-overlay"></div>
+                        <div class="scene-night-overlay"></div>
+                        <div class="scene-dawn-overlay"></div>
 
-                    <div class="scene-star star-1"></div>
-                    <div class="scene-star star-2"></div>
-                    <div class="scene-star star-3"></div>
-                    <div class="scene-star star-4"></div>
+                        <div class="scene-sun"></div>
+                        <div class="scene-moon"></div>
+
+                        <div class="scene-star star-1"></div>
+                        <div class="scene-star star-2"></div>
+                        <div class="scene-star star-3"></div>
+                        <div class="scene-star star-4"></div>
+                    </div>
 
                     <div class="scene-car">
                         <div class="scene-car-roof">
@@ -836,10 +1196,10 @@ def render_loading_screen():
                     </div>
                 </div>
 
-                <div class="loading-title">Preparando Madrid Segura</div>
+                <div class="loading-title">Preparando Madrid Movilidad Segura</div>
 
                 <div class="loading-text">
-                    Estamos cargando los datos de accidentalidad, aforos viales y visualizaciones.
+                    Analizando datos de accidentalidad, lesividad y exposición vial en Madrid.
                 </div>
 
                 <div class="loading-question">
@@ -877,7 +1237,7 @@ def render_header():
                 {logo_html}
             </div>
             <div class="header-title-box">
-                <div class="header-title">Madrid Segura</div>
+                <div class="header-title">Madrid Movilidad Segura</div>
             </div>
         </div>
         """,
@@ -979,19 +1339,48 @@ def convertir_utm_a_latlon(df):
 
     return df
 
+def envolver_titulo(texto, max_chars=62):
+    if texto is None:
+        return texto
+
+    texto = str(texto)
+    if len(texto) <= max_chars:
+        return texto
+
+    palabras = texto.split()
+    lineas = []
+    linea_actual = ""
+
+    for palabra in palabras:
+        prueba = f"{linea_actual} {palabra}".strip()
+        if len(prueba) <= max_chars:
+            linea_actual = prueba
+        else:
+            if linea_actual:
+                lineas.append(linea_actual)
+            linea_actual = palabra
+
+    if linea_actual:
+        lineas.append(linea_actual)
+
+    return "<br>".join(lineas)
 
 def aplicar_estilo_figura(fig, titulo_x=None, titulo_y=None, alto=500):
+    titulo_actual = fig.layout.title.text
+    if titulo_actual:
+        fig.update_layout(title_text=envolver_titulo(titulo_actual, max_chars=62))
+
     fig.update_layout(
         template="plotly_white",
         title=dict(
             x=0,
             xanchor="left",
-            font=dict(size=18, color="#16324F"),
-            pad=dict(b=24),
+            font=dict(size=16, color="#16324F"),
+            pad=dict(b=8),
         ),
         font=dict(size=12, color="#334155"),
         legend_title_text="",
-        margin=dict(l=25, r=25, t=110, b=50),
+        margin=dict(l=45, r=30, t=80, b=70),
         paper_bgcolor="white",
         plot_bgcolor="white",
         height=alto,
@@ -1005,23 +1394,47 @@ def aplicar_estilo_figura(fig, titulo_x=None, titulo_y=None, alto=500):
     if titulo_y is not None:
         fig.update_yaxes(title_text=titulo_y, title_font=dict(size=12))
 
-    fig.update_xaxes(tickfont=dict(size=11))
-    fig.update_yaxes(tickfont=dict(size=11))
+    fig.update_xaxes(
+        tickfont=dict(size=11),
+        automargin=True,
+        title_standoff=18,
+    )
+
+    fig.update_yaxes(
+        tickfont=dict(size=11),
+        automargin=True,
+    )
 
     return fig
 
 
-def aplicar_espacio_leyenda(fig, y=1.18, top=145):
+def aplicar_espacio_leyenda(fig, y=None, top=105):
+    titulo_actual = fig.layout.title.text or ""
+    n_lineas = str(titulo_actual).count("<br>") + 1
+    top_final = top + max(0, n_lineas - 1) * 18
+
     fig.update_layout(
         legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=y,
-            xanchor="left",
-            x=0,
+            y=1.02,
+            xanchor="center",
+            x=0.5,
+            font=dict(size=10),
+            tracegroupgap=5,
         ),
-        margin=dict(l=25, r=25, t=top, b=50),
+        margin=dict(l=45, r=30, t=top_final, b=82),
     )
+
+    fig.update_xaxes(
+        automargin=True,
+        title_standoff=18,
+    )
+
+    fig.update_yaxes(
+        automargin=True,
+    )
+
     return fig
 
 
@@ -1183,54 +1596,107 @@ def grafico_porcentaje_agrupado(df, variable, orden_categorias, titulo, alto=480
         titulo_y="Porcentaje",
         alto=alto,
     )
-    fig = aplicar_espacio_leyenda(fig, y=1.20, top=150)
-    fig.update_xaxes(tickangle=-25)
+
+    fig = aplicar_espacio_leyenda(fig, top=108)
+
+    fig.update_traces(
+        textfont_size=10,
+        cliponaxis=False,
+    )
+
+    max_pct = tabla_long["Porcentaje"].max()
+    limite_y = min(112, max(100, max_pct * 1.14))
+
+    fig.update_yaxes(
+        range=[0, limite_y],
+        automargin=True,
+    )
+
+    fig.update_xaxes(
+        tickangle=-25,
+        automargin=True,
+        title_standoff=18,
+    )
+
+    fig.update_layout(
+        uniformtext_minsize=8,
+        uniformtext_mode="hide",
+    )
+
     return fig
 
 
-def obtener_offset_etiqueta(categoria, indice):
-    texto = str(categoria).strip()
+def calcular_offsets_etiquetas(resumen, thr_x=0.12, thr_y=0.14):
+    aux = resumen.reset_index(drop=True).copy()
 
-    offsets_especificos = {
-        # Tipo de vehículo
-        "Motocicleta más 125cc": (78, 46),
-        "Motocicleta más de 125cc": (78, 46),
-        "Ciclomotor": (-78, -52),
-        "Patinete": (86, -10),
-        "Bicicleta": (-92, -60),
-        "Motor/Especial": (90, 12),
-        "Vehículos entidades": (86, 52),
-        "Vehículo ligero": (94, -34),
-        "Transporte pesado": (100, 18),
-        "Turismo": (82, 20),
-        "Vehículo ligero/Transporte": (96, 18),
+    x = pd.to_numeric(aux["frecuencia"], errors="coerce").fillna(0)
+    y = pd.to_numeric(aux["porcentaje"], errors="coerce").fillna(0)
 
-        # Tipo de accidente
-        "Atropello": (86, -50),
-        "Caída": (78, 44),
-        "Colisión": (90, -8),
-        "Alcance": (84, 36),
-        "Obstáculo": (-90, -40),
-        "Pérdida control/Otro": (-96, 42),
-        "Pérdida control": (-96, 42),
-        "Salida/Vuelco": (92, 24),
-    }
+    x_range = max(x.max() - x.min(), 1)
+    y_range = max(y.max() - y.min(), 1)
 
-    if texto in offsets_especificos:
-        return offsets_especificos[texto]
+    aux["x_norm"] = (x - x.min()) / x_range
+    aux["y_norm"] = (y - y.min()) / y_range
 
-    offsets_genericos = [
-        (88, -46),
-        (88, 46),
-        (-88, -46),
-        (-88, 46),
-        (104, 12),
-        (-104, 12),
-        (64, -64),
-        (64, 64),
-    ]
-    return offsets_genericos[indice % len(offsets_genericos)]
+    offsets = []
+    usados = []
 
+    for i, fila in aux.iterrows():
+        xi = fila["x_norm"]
+        yi = fila["y_norm"]
+
+        cerca = aux[
+            (aux.index != i) &
+            (abs(aux["x_norm"] - xi) <= thr_x) &
+            (abs(aux["y_norm"] - yi) <= thr_y)
+        ]
+
+        n_izq = (cerca["x_norm"] < xi).sum()
+        n_der = (cerca["x_norm"] > xi).sum()
+        n_arriba = (cerca["y_norm"] > yi).sum()
+        n_abajo = (cerca["y_norm"] < yi).sum()
+
+        if n_der > n_izq:
+            lado = "izquierda"
+        elif n_izq > n_der:
+            lado = "derecha"
+        else:
+            if xi > 0.72:
+                lado = "izquierda"
+            elif xi < 0.28:
+                lado = "derecha"
+            else:
+                lado = "derecha" if i % 2 == 0 else "izquierda"
+
+        ax = 16 if lado == "derecha" else -16
+
+        if n_arriba > n_abajo:
+            candidatos_y = [-4, -18, 14, -30, 28, -42, 40]
+        elif n_abajo > n_arriba:
+            candidatos_y = [4, 18, -14, 30, -28, 42, -40]
+        else:
+            candidatos_y = [0, 14, -14, 26, -26, 38, -38]
+
+        clave_zona = (
+            round(xi / 0.10),
+            round(yi / 0.10),
+            lado
+        )
+
+        repetidos = sum(1 for c in usados if c == clave_zona)
+        usados.append(clave_zona)
+
+        ay = candidatos_y[repetidos % len(candidatos_y)]
+
+        extra_x = min(repetidos, 4) * 8
+        if lado == "derecha":
+            ax += extra_x
+        else:
+            ax -= extra_x
+
+        offsets.append((ax, ay))
+
+    return offsets
 
 def obtener_anchor_etiqueta(ax, ay):
     if ax >= 0:
@@ -1302,45 +1768,52 @@ def grafico_frecuencia_vs_lesividad(df, variable, nivel_lesividad, titulo):
         )
     )
 
+    offsets = calcular_offsets_etiquetas(resumen)
+
     for i, fila in resumen.iterrows():
-        ax, ay = obtener_offset_etiqueta(fila["categoria"], i)
-        xanchor, yanchor = obtener_anchor_etiqueta(ax, ay)
+        ax, ay = offsets[i]
+        xanchor = "left" if ax >= 0 else "right"
 
         fig.add_annotation(
             x=fila["frecuencia"],
             y=fila["porcentaje"],
             text=fila["etiqueta_corta"],
-            showarrow=True,
-            arrowhead=0,
-            arrowwidth=1.1,
-            arrowcolor="#334155",
-            ax=ax,
-            ay=ay,
+            showarrow=False,
+            xshift=ax,
+            yshift=ay,
             xanchor=xanchor,
-            yanchor=yanchor,
-            font=dict(size=11, color="#334155"),
-            bgcolor="rgba(255,255,255,0.88)",
+            yanchor="middle",
+            font=dict(size=10, color="#334155"),
+            bgcolor="rgba(255,255,255,0.92)",
             bordercolor="rgba(226,232,240,0.95)",
             borderwidth=1,
-            borderpad=3,
+            borderpad=2,
         )
 
     fig = aplicar_estilo_figura(
         fig,
         titulo_x="Número de personas implicadas",
         titulo_y=f"% {nivel_lesividad.lower()}",
-        alto=560,
+        alto=630
     )
 
     max_pct = resumen["porcentaje"].max()
 
     fig.update_layout(
-        title=titulo,
-        margin=dict(l=70, r=150, t=100, b=60),
+        title=envolver_titulo(titulo, max_chars=70),
+        margin=dict(l=75, r=155, t=82, b=82),
     )
 
-    fig.update_xaxes(range=[-max_freq * 0.16, max_freq * 1.22])
-    fig.update_yaxes(range=[-max(0.35, max_pct * 0.10), max(max_pct * 1.22, 5)])
+    fig.update_xaxes(
+        range=[-max_freq * 0.1, max_freq * 1.12],
+        automargin=True,
+        title_standoff=20,
+    )
+
+    fig.update_yaxes(
+        range=[-max(0.50, max_pct * 0.12), max(max_pct * 1.28, 5)],
+        automargin=True,
+    )
 
     tabla_detalle = resumen.copy()
     tabla_detalle["Personas implicadas"] = tabla_detalle["frecuencia"].apply(formato_numero_es)
@@ -1625,6 +2098,7 @@ accidentes = cargar_accidentes()
 flujo_long = cargar_flujo()
 
 if mostrar_carga_inicial:
+    time.sleep(6)
     loading_placeholder.empty()
     st.session_state["pantalla_carga_mostrada"] = True
 
@@ -1951,6 +2425,10 @@ with tab_lesividad:
         fig_les = aplicar_estilo_figura(fig_les, titulo_x="Nivel de lesividad", titulo_y="Número de personas", alto=480)
         fig_les = aplicar_espacio_leyenda(fig_les, y=1.20, top=150)
         fig_les.update_layout(bargap=0.03)
+        fig_les.update_yaxes(
+        range=[0, tabla_les["Número de personas"].max() * 1.14],
+        automargin=True,
+    )
         st.plotly_chart(fig_les, use_container_width=True)
 
     with col2:
@@ -1972,6 +2450,10 @@ with tab_lesividad:
         fig_pct = aplicar_estilo_figura(fig_pct, titulo_x="Nivel de lesividad", titulo_y="Porcentaje", alto=480)
         fig_pct = aplicar_espacio_leyenda(fig_pct, y=1.20, top=150)
         fig_pct.update_layout(bargap=0.03)
+        fig_pct.update_yaxes(
+        range=[0, tabla_pct["Porcentaje"].max() * 1.16],
+        automargin=True,
+    )
         st.plotly_chart(fig_pct, use_container_width=True)
 
     if COL_ACCIDENTE:
@@ -2110,13 +2592,7 @@ with tab_perfil:
         perfiles["perfil"] = perfiles[COL_PERSONA].astype(str) + " · " + perfiles[COL_EDAD].astype(str)
         perfiles["nivel_bin"] = (perfiles[COL_LESIVIDAD] == nivel_perfil).astype(int)
 
-        min_registros = st.slider(
-            "Mínimo de registros por perfil para incluirlo en el ranking",
-            min_value=50,
-            max_value=1000,
-            value=200,
-            step=50,
-        )
+        min_registros = 40
 
         tabla_perfiles = (
             perfiles.groupby("perfil", observed=False)
@@ -2247,11 +2723,20 @@ with tab_tiempo:
             .fillna(0)
         )
 
+        ESCALA_HEATMAP = [
+            [0.00, "#FFF7F7"],  # rojo casi blanco
+            [0.20, "#FEE2E2"],  # rojo muy claro
+            [0.40, "#FCA5A5"],  # rojo claro
+            [0.60, "#F87171"],  # rojo medio
+            [0.80, "#DC2626"],  # rojo fuerte
+            [1.00, "#7F1D1D"],  # rojo oscuro
+        ]
+
         fig_heat = px.imshow(
             pivot_heat,
             aspect="auto",
             text_auto=False,
-            color_continuous_scale=ESCALA_RIESGO,
+            color_continuous_scale=ESCALA_HEATMAP,
             title=f"Concentración de casos de '{categoria_heatmap}' por hora y día de semana",
         )
         fig_heat = aplicar_estilo_figura(fig_heat, titulo_x="Hora del día", titulo_y="Día de semana", alto=430)
@@ -2340,7 +2825,7 @@ with tab_mapa:
                     popup=folium.Popup(popup_texto, max_width=320),
                 ).add_to(marker_cluster)
 
-            st_folium(mapa, width=1200, height=680)
+            st_folium(mapa, height=680, use_container_width=True)
     else:
         st.warning("No se encontraron coordenadas geográficas o UTM convertibles en la base de accidentes.")
 
@@ -2554,7 +3039,7 @@ with tab_exposicion:
                         popup=folium.Popup(popup_texto, max_width=280),
                     ).add_to(mapa_est)
 
-                st_folium(mapa_est, width=1200, height=620)
+                st_folium(mapa_est, height=620, use_container_width=True)
             else:
                 st.info("No se encontraron columnas de estación, latitud y longitud en flujo.csv.")
 
