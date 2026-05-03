@@ -422,16 +422,96 @@ st.markdown(
         100% { transform: translateX(255%); }
     }
 
+/* ============================================================
+PESTAÑAS DEL TABLERO
+============================================================ */
+
     div[data-baseweb="tab-list"] {
-        gap: 0.4rem;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        scrollbar-width: thin;
+        display: flex !important;
+        width: 100% !important;
+        gap: 0.35rem !important;
+        overflow-x: visible !important;
+        overflow-y: hidden !important;
+        white-space: normal !important;
+        scrollbar-width: thin !important;
+        border-bottom: 1px solid #D9E2EC !important;
+        padding-bottom: 0.25rem !important;
+        margin-bottom: 1rem !important;
     }
 
+    /* Quita la segunda línea gris inferior que agrega Streamlit */
+    div[data-baseweb="tab-border"] {
+        display: none !important;
+    }
+
+    /* Cada pestaña ocupa una parte igual del ancho */
     button[data-baseweb="tab"] {
-        flex: 0 0 auto;
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0.65rem 0.45rem 0.72rem 0.45rem !important;
+        border-radius: 12px 12px 0 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        transition: background 0.2s ease-in-out, color 0.2s ease-in-out !important;
+    }
+
+    /* Texto de las pestañas */
+    button[data-baseweb="tab"] p {
+        width: 100% !important;
+        margin: 0 !important;
+        text-align: center !important;
+        font-size: 1.02rem !important;
+        font-weight: 700 !important;
+        color: #334155 !important;
+        white-space: nowrap !important;
+    }
+
+    /* Hover */
+    button[data-baseweb="tab"]:hover {
+        background: #F1F5F9 !important;
+    }
+
+    button[data-baseweb="tab"]:hover p {
+        color: #16324F !important;
+    }
+
+    /* Pestaña activa */
+    button[data-baseweb="tab"][aria-selected="true"] {
+        background: #EAF3FB !important;
+        box-shadow: none !important;
+    }
+
+    button[data-baseweb="tab"][aria-selected="true"] p {
+        color: #16324F !important;
+        font-weight: 800 !important;
+    }
+
+    /* Línea azul activa de Streamlit */
+    div[data-baseweb="tab-highlight"] {
+        background-color: #16324F !important;
+        height: 3px !important;
+    }
+
+    /* En pantallas pequeñas se permite desplazamiento horizontal */
+    @media (max-width: 900px) {
+        div[data-baseweb="tab-list"] {
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            gap: 0.35rem !important;
+        }
+
+        button[data-baseweb="tab"] {
+            flex: 0 0 auto !important;
+            min-width: max-content !important;
+            padding: 0.65rem 0.9rem 0.72rem 0.9rem !important;
+        }
+
+        button[data-baseweb="tab"] p {
+            font-size: 0.95rem !important;
+        }
     }
 
     @media (max-width: 1100px) {
